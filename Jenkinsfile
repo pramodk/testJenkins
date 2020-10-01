@@ -18,7 +18,8 @@ pipeline {
             stage('Deploy') {
                 steps {
                     echo 'This is the Deploy Stage'
-                    sh 'scp test_script.sh bp000359@ela1.cscs.ch:~/bin'
+                    sh 'ssh bp000359@ela1.cscs.ch "mkdir ./bin/new_code" '
+                    sh 'scp * bp000359@ela1.cscs.ch:~/bin/new_code'
                     sh 'ssh bp000359@ela1.cscs.ch "./bin/execute_daint.sh" '
                 }
             }
