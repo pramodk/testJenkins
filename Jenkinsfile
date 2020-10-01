@@ -14,6 +14,7 @@ pipeline {
             stage('Deploy') {
                 steps {
                     echo 'This is the Deploy Stage'
+                    sh 'ssh bp000359@ela1.cscs.ch "hostname" '
                 }
             }
         }
