@@ -16,13 +16,14 @@ pipeline {
                     sh 'ssh bp000359@ela1.cscs.ch "mkdir -p ./bbp/" '
                     sh 'ssh bp000359@ela1.cscs.ch "rm -rf ./bbp/*" '
                     sh 'scp * bp000359@ela1.cscs.ch:~/bbp/'
-                    sh 'ssh bp000359@ela1.cscs.ch "ls ~/bbp/ && cat ./bbp/execute_daint.sh && cat ./bbp/deploy_script.sh" '
-                    sh 'ssh bp000359@ela1.cscs.ch "./bbp/execute_daint.sh" '
+                    sh 'ssh bp000359@ela1.cscs.ch "ls ~/bbp/" '
+                    sh 'ssh bp000359@ela1.cscs.ch "./bbp/execute_daint_deploy.sh" '
                 }
             }
             stage('Test') {
                 steps {
                     echo 'This is the Testing Stage'
+                    sh 'ssh bp000359@ela1.cscs.ch "./bbp/execute_daint_run.sh" '
                 }
             }
         }
